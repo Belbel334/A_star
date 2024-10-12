@@ -15,10 +15,10 @@ pub fn main() -> Result<(), String> {
     let sdl_context = sdl2::init()?;
     let video_subsystem = sdl_context.video()?;
 
-    let tile_size = 64;
+    let tile_size = 66;
 
-    let screen_width = 13 * tile_size;
-    let screen_height = 9 * tile_size;
+    let screen_width = 15 * tile_size;
+    let screen_height = 10 * tile_size;
 
     let window = video_subsystem
         .window("A* algoritm", screen_width, screen_height)
@@ -49,8 +49,8 @@ pub fn main() -> Result<(), String> {
 
     let solid_tiles = [1];
 
-    let start = Point::new(1, 1);
-    let end = Point::new(5, 5);
+    let start = Point::new(1, 2);
+    let end = Point::new(4, 5);
 
     // start time
     let now = Instant::now();
@@ -113,7 +113,7 @@ pub fn main() -> Result<(), String> {
             }
         }
 
-        canvas.set_draw_color(Color::RGB(255, 0, 0));
+        canvas.set_draw_color(Color::RGB(255, 10, 10));
         canvas.fill_rect(Rect::new(
             end.x * tile_size as i32,
             end.y * tile_size as i32,
@@ -121,7 +121,7 @@ pub fn main() -> Result<(), String> {
             tile_size,
         ))?;
 
-        canvas.set_draw_color(Color::RGB(0, 255, 0));
+        canvas.set_draw_color(Color::RGB(10, 255, 10));
         canvas.fill_rect(Rect::new(
             start.x * tile_size as i32,
             start.y * tile_size as i32,
@@ -129,10 +129,10 @@ pub fn main() -> Result<(), String> {
             tile_size,
         ))?;
 
-        canvas.set_draw_color(Color::RGB(255, 0, 255));
+        canvas.set_draw_color(Color::RGB(255, 10, 255));
         canvas.fill_rect(path_r)?;
 
-        canvas.set_draw_color(Color::RGB(0, 0, 0));
+        canvas.set_draw_color(Color::RGB(35, 5, 15));
 
         for x in 0..(screen_width / tile_size) {
             canvas.draw_line(
@@ -147,7 +147,7 @@ pub fn main() -> Result<(), String> {
             )?;
         }
 
-        canvas.set_draw_color(Color::RGB(0, 0, 255));
+        canvas.set_draw_color(Color::RGB(10, 10, 255));
         let ts = tile_size as i32;
         let mut cp = Point::new(start.x * ts + ts / 2, start.y * ts + ts / 2);
         for i in &path {
